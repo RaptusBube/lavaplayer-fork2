@@ -47,6 +47,7 @@ public class YoutubeSearchProvider implements YoutubeSearchResultLoader {
    */
   @Override
   public AudioItem loadSearchResult(String query, Function<AudioTrackInfo, AudioTrack> trackFactory) {
+    System.out.println("Performing a search with query "+query);
     log.debug("Performing a search with query {}", query);
 
     try (HttpInterface httpInterface = httpInterfaceManager.getInterface()) {
@@ -58,7 +59,7 @@ public class YoutubeSearchProvider implements YoutubeSearchResultLoader {
       StringEntity payload = new StringEntity(clientConfig.toJsonString(), "UTF-8");
       post.setEntity(payload);
 
-      try (CloseableHttpResponse response = httpInterface.execute(post)) {
+        try (CloseableHttpResponse response = httpInterface.execute(post)) {
         HttpClientTools.assertSuccessWithContent(response, "search response");
 
         String responseText = EntityUtils.toString(response.getEntity(), UTF_8);
