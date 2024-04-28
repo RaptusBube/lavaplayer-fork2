@@ -48,6 +48,7 @@ public class YoutubeSearchProvider implements YoutubeSearchResultLoader {
   @Override
   public AudioItem loadSearchResult(String query, Function<AudioTrackInfo, AudioTrack> trackFactory) {
     System.out.println("Performing a search with query "+query);
+    //123
     log.debug("Performing a search with query {}", query);
 
     try (HttpInterface httpInterface = httpInterfaceManager.getInterface()) {
